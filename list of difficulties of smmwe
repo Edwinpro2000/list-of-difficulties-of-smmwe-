@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>List of Difficulties of SMM:WE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#e52521;--blue:#049cd8;--yellow:#fbd000;--green:#43b047;--black:#111;--white:#fff;
+  --sky:#5c94fc;--brick:#c84c0c;--panel:#fff8dc;
+  --px:'Press Start 2P',ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;image-rendering:pixelated}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:var(--px);font-size:10px;line-height:1.7;color:var(--black);
+  background:
+    linear-gradient(rgba(255,255,255,.07) 2px,transparent 2px) 0 0/32px 32px,
+    linear-gradient(90deg,rgba(255,255,255,.07) 2px,transparent 2px) 0 0/32px 32px,
+    var(--sky);
+  min-height:100vh;padding-bottom:90px;
+}
+body::after{ /* brick ground */
+  content:"";position:fixed;left:0;right:0;bottom:0;height:48px;z-index:0;
+  background:
+    linear-gradient(var(--black) 4px,transparent 4px) 0 0/48px 24px,
+    linear-gradient(90deg,var(--black) 4px,transparent 4px) 0 0/48px 24px,
+    var(--brick);
+  border-top:6px solid var(--black);
+}
+button,input,select,textarea{font-family:var(--px);font-size:10px}
+.wrap{max-width:1100px;margin:0 auto;padding:16px;position:relative;z-index:1}
+
+/* clouds */
+.cloud{position:fixed;width:96px;height:32px;background:#fff;z-index:0;opacity:.9;
+  box-shadow:16px -16px 0 #fff,32px -16px 0 #fff,48px 0 0 #fff,-16px 0 0 #fff,64px 0 0 #fff;
+  animation:drift 60s linear infinite}
+.c1{top:90px;left:-120px}.c2{top:230px;left:-120px;animation-duration:90s;animation-delay:-30s}
+.c3{top:400px;left:-120px;animation-duration:75s;animation-delay:-55s}
+@keyframes drift{to{transform:translateX(calc(100vw + 300px))}}
+
+/* header */
+header{text-align:center;padding:28px 12px 8px}
+.logo-top{display:inline-block;background:var(--black);color:var(--yellow);padding:6px 12px;margin-bottom:16px}
+h1{margin:0;font-size:clamp(18px,5.2vw,44px);line-height:1.35;color:var(--yellow);text-transform:uppercase;
+  text-shadow:4px 0 0 var(--black),-4px 0 0 var(--black),0 4px 0 var(--black),0 -4px 0 var(--black),
+    4px 4px 0 var(--black),-4px 4px 0 var(--black),4px -4px 0 var(--black),-4px -4px 0 var(--black),
+    0 8px 0 var(--red),4px 8px 0 var(--black),-4px 8px 0 var(--black),0 12px 0 var(--black)}
+h1 span{color:var(--red)}
+.tag{margin:26px auto 0;max-width:720px;background:var(--white);border:4px solid var(--black);
+  box-shadow:6px 6px 0 var(--black);padding:14px;font-size:11px}
+.coins{display:flex;justify-content:center;gap:18px;margin-top:18px}
+.coin{width:20px;height:28px;background:var(--yellow);border:3px solid var(--black);
+  box-shadow:inset -4px 0 0 #c9a200;animation:spin 1.2s steps(6) infinite}
+.coin:nth-child(2){animation-delay:-.3s}.coin:nth-child(3){animation-delay:-.6s}.coin:nth-child(4){animation-delay:-.9s}
+@keyframes spin{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.2)}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:22px 0}
+.stat{background:var(--blue);color:#fff;border:4px solid var(--black);box-shadow:4px 4px 0 var(--black);padding:10px;text-align:center}
+.stat b{display:block;font-size:18px;color:var(--yellow);margin-top:4px}
+
+/* panels */
+.panel{background:var(--panel);border:4px solid var(--black);box-shadow:6px 6px 0 var(--black);padding:14px;margin-bottom:20px}
+.panel h2{margin:0 0 12px;font-size:13px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.qblock{display:inline-grid;place-items:center;width:28px;height:28px;background:var(--yellow);border:3px solid var(--black);
+  box-shadow:inset -3px -3px 0 #c9a200;font-size:12px;animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-4px)}}
+
+/* controls */
+.controls{display:grid;gap:12px}
+input[type=text],input[type=password],input[type=number],input[type=url],select,textarea{
+  width:100%;padding:10px;border:4px solid var(--black);background:#fff;outline:none;border-radius:0}
+input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px var(--yellow)}
+textarea{min-height:80px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.btn{cursor:pointer;border:4px solid var(--black);background:var(--white);padding:9px 12px;
+  box-shadow:4px 4px 0 var(--black);transition:transform .12s,box-shadow .12s,background .12s;color:var(--black);text-transform:uppercase}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--black)}
+.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--black)}
+.btn.on{background:var(--red);color:#fff}
+.btn.green{background:var(--green);color:#fff}.btn.blue{background:var(--blue);color:#fff}
+.btn.yellow{background:var(--yellow)}.btn.red{background:var(--red);color:#fff}
+.btn.sm{padding:6px 8px;font-size:9px;box-shadow:3px 3px 0 var(--black)}
+.lbl{display:block;margin:10px 0 4px;font-size:9px}
+
+/* top cards */
+.top{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{cursor:pointer;background:#fff;border:4px solid var(--black);box-shadow:5px 5px 0 var(--black);padding:12px;
+  transition:transform .15s,box-shadow .15s;position:relative}
+.card:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--black)}
+.card .n{position:absolute;top:-14px;left:-10px;background:var(--red);color:#fff;border:3px solid var(--black);padding:4px 8px}
+.card h3{margin:10px 0 6px;font-size:11px;line-height:1.5}
+.card p{margin:2px 0;font-size:9px}
+
+/* list */
+.head,.row{display:grid;grid-template-columns:56px 1.6fr 1fr 1fr 80px 100px;gap:10px;align-items:center}
+.head{background:var(--black);color:var(--yellow);padding:10px;font-size:9px}
+.row{background:#fff;border:4px solid var(--black);border-top:0;padding:10px;cursor:pointer;transition:background .12s,transform .12s}
+.row:hover{background:#fff3b0;transform:translateX(4px)}
+.row .rk{background:var(--blue);color:#fff;text-align:center;padding:6px 0;border:3px solid var(--black)}
+.row:nth-child(-n+4) .rk{background:var(--red)}
+.nm{word-break:break-word}
+.badge{display:inline-block;padding:4px 6px;border:3px solid var(--black);color:#fff;text-shadow:1px 1px 0 #000;font-size:9px}
+.st{font-size:9px;display:inline-block;padding:4px 6px;border:3px solid var(--black)}
+.st.v{background:var(--green);color:#fff}.st.p{background:var(--yellow)}
+.rowtools{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end}
+.empty{background:#fff;border:4px solid var(--black);padding:24px;text-align:center}
+.hide{display:none!important}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;z-index:50;padding:14px;overflow:auto}
+.modal.open{display:flex;animation:fade .2s}
+@keyframes fade{from{opacity:0}}
+.box{background:var(--panel);border:5px solid var(--black);box-shadow:8px 8px 0 var(--black);width:100%;max-width:560px;max-height:92vh;overflow:auto;padding:18px;animation:pop .22s}
+@keyframes pop{from{transform:scale(.85)}}
+.box h2{margin:0 0 12px;font-size:13px;line-height:1.5}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:8px;padding:6px 0;border-bottom:2px dashed #999;font-size:9px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.adminbar{background:var(--green);border:4px solid var(--black);box-shadow:5px 5px 0 var(--black);padding:12px;margin-bottom:20px}
+.diffrow{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.diffrow input[type=color]{width:48px;height:40px;border:4px solid var(--black);padding:0;background:#fff}
+footer{text-align:center;margin-top:30px;font-size:9px;color:#fff;text-shadow:2px 2px 0 #000}
+.toast{position:fixed;left:50%;bottom:64px;transform:translateX(-50%);background:var(--black);color:var(--yellow);padding:10px 14px;border:3px solid var(--yellow);z-index:99;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.show{opacity:1}
+
+@media(max-width:760px){
+  .head{display:none}
+  .row{grid-template-columns:48px 1fr;gap:6px 10px;border-top:0}
+  .row>.c2,.row>.c3,.row>.c4,.row>.c5,.row>.c6{grid-column:2}
+  .row>.c3::before{content:"BY ";color:#666}
+  .row>.c5::before{content:"ATTEMPTS: ";color:#666}
+  .kv{grid-template-columns:1fr}
+  .row .rk{grid-row:span 3}
+}
+</style>
+</head>
+<body>
+<div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+
+<div class="wrap">
+<header>
+  <div class="logo-top">&#9733; OFFICIAL RANKING &#9733;</div>
+  <h1>List of Difficulties<br>of <span>SMM:WE</span></h1>
+  <div class="tag">Welcome, player! This page contains a ranking of the hardest levels in SMM:WE, sorted from toughest to easiest. Search, filter and click any level to see its details.</div>
+  <div class="coins"><div class="coin"></div><div class="coin"></div><div class="coin"></div><div class="coin"></div></div>
+</header>
+
+<div class="stats" id="stats"></div>
+
+<div class="adminbar hide" id="adminbar">
+  <div class="chips">
+    <span class="badge" style="background:#111;color:var(--yellow)">ADMIN MODE</span>
+    <button class="btn sm yellow" id="aAdd">+ Add level</button>
+    <button class="btn sm blue" id="aDiff">Difficulties</button>
+    <button class="btn sm" id="aExp">Export</button>
+    <button class="btn sm" id="aImp">Import</button>
+    <button class="btn sm" id="aPass">Password</button>
+    <button class="btn sm red" id="aReset">Reset</button>
+    <button class="btn sm" id="aOut">Log out</button>
+  </div>
+  <input type="file" id="file" accept="application/json" class="hide">
+</div>
+
+<section class="panel" id="topPanel">
+  <h2><span class="qblock">?</span> HARDEST LEVELS</h2>
+  <div class="top" id="top"></div>
+</section>
+
+<section class="panel">
+  <h2><span class="qblock">?</span> FULL RANKING</h2>
+  <div class="controls">
+    <input type="text" id="q" placeholder="Search level or creator..." aria-label="Search">
+    <div>
+      <span class="lbl">CATEGORY</span>
+      <div class="chips" id="cats"></div>
+    </div>
+    <div>
+      <span class="lbl">DIFFICULTY</span>
+      <div class="chips" id="diffs"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><div>#</div><div>LEVEL</div><div>CREATOR</div><div>DIFFICULTY</div><div>TRIES</div><div>STATUS</div></div>
+  <div id="list"></div>
+</section>
+
+<footer>&copy; List of Difficulties of SMM:WE &mdash; Fan-made ranking. Sample data included.<br><br>
+<button class="btn sm yellow" id="adminBtn">&#128273; Admin</button></footer>
+</div>
+
+<!-- detail modal -->
+<div class="modal" id="mDetail"><div class="box" id="detailBox"></div></div>
+<!-- generic modal -->
+<div class="modal" id="mForm"><div class="box" id="formBox"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+"use strict";
+const KEY="lod_smmwe_v1",PKEY="lod_smmwe_pass2",SKEY="lod_smmwe_session";
+const DEF_DIFFS=[
+  {name:"Easy Hard",color:"#43b047"},{name:"Hard",color:"#049cd8"},{name:"Expert",color:"#7a3fd1"},
+  {name:"Super Expert",color:"#e52521"},{name:"Insane",color:"#c2185b"},{name:"Extreme",color:"#e65100"},
+  {name:"Impossible",color:"#111111"}];
+const DEF_LEVELS=[
+  {name:"Pixel Abyss",creator:"WolfByte",diff:"Impossible",attempts:48210,status:"verified",desc:"Sample entry. Frame-perfect shell jumps over a no-checkpoint 6 minute gauntlet."},
+  {name:"Thwomp Cathedral",creator:"StarChaser",diff:"Impossible",attempts:31877,status:"pending",desc:"Sample entry. Waiting for a verification clear."},
+  {name:"Bullet Storm Zero",creator:"KoopaKid",diff:"Extreme",attempts:19420,status:"verified",desc:"Sample entry. Bullet bills, spikes and precise wall jumps."},
+  {name:"Lava Clockwork",creator:"MarioFan64",diff:"Extreme",attempts:15032,status:"verified",desc:"Sample entry. Timing-based lava machinery."},
+  {name:"Cloud Nine Gauntlet",creator:"LuigiLuis",diff:"Insane",attempts:9811,status:"verified",desc:"Sample entry. Long sky route with tight enemy patterns."},
+  {name:"Boo Mansion Rush",creator:"PixelPeach",diff:"Super Expert",attempts:5240,status:"pending",desc:"Sample entry."},
+  {name:"Pipe Maze Mayhem",creator:"WarpZone",diff:"Expert",attempts:2100,status:"verified",desc:"Sample entry."},
+  {name:"Castle of Fire",creator:"BowserJr",diff:"Hard",attempts:870,status:"verified",desc:"Sample entry."}];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const uid=()=>Math.random().toString(36).slice(2,10);
+const fmt=n=>(n==null||n==="")?"N/A":Number(n).toLocaleString("en-US");
+
+let state;
+function load(){
+  try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.levels&&s.diffs)return s;}catch(e){}
+  return {diffs:JSON.parse(JSON.stringify(DEF_DIFFS)),levels:DEF_LEVELS.map(l=>({id:uid(),...l}))};
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){toast("Could not save (storage blocked)");}}
+state=load();
+
+let admin=false;try{admin=sessionStorage.getItem(SKEY)==="1";}catch(e){}
+let fCat="all",fDiff="all",query="";
+
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("show"),2200);}
+const dcolor=n=>(state.diffs.find(d=>d.name===n)||{color:"#666"}).color;
+const badge=n=>`<span class="badge" style="background:${esc(dcolor(n))}">${esc(n)}</span>`;
+const stat=s=>s==="verified"?`<span class="st v">VERIFIED</span>`:`<span class="st p">PENDING</span>`;
+
+/* ---------- render ---------- */
+function render(){
+  const L=state.levels;
+  $("#stats").innerHTML=
+    `<div class="stat">LEVELS<b>${L.length}</b></div>
+     <div class="stat">VERIFIED<b>${L.filter(l=>l.status==="verified").length}</b></div>
+     <div class="stat">PENDING<b>${L.filter(l=>l.status!=="verified").length}</b></div>
+     <div class="stat">TOTAL TRIES<b>${fmt(L.reduce((a,l)=>a+(Number(l.attempts)||0),0))}</b></div>`;
+  $("#top").innerHTML=L.slice(0,3).map((l,i)=>
+    `<div class="card" data-id="${l.id}"><span class="n">#${i+1}</span><h3>${esc(l.name)}</h3>
+     <p>By ${esc(l.creator)}</p><p>${badge(l.diff)}</p><p>${stat(l.status)}</p></div>`).join("")||`<div class="empty">No levels yet.</div>`;
+
+  const cats=[["all","All"],["verified","Verified"],["pending","Pending"],["hardest","Top 10"]];
+  $("#cats").innerHTML=cats.map(c=>`<button class="btn sm ${fCat===c[0]?"on":""}" data-cat="${c[0]}">${c[1]}</button>`).join("");
+  $("#diffs").innerHTML=[`<button class="btn sm ${fDiff==="all"?"on":""}" data-diff="all">All</button>`]
+    .concat(state.diffs.map(d=>`<button class="btn sm ${fDiff===d.name?"on":""}" data-diff="${esc(d.name)}">${esc(d.name)}</button>`)).join("");
+
+  const q=query.trim().toLowerCase();
+  const rows=L.map((l,i)=>({l,rank:i+1})).filter(({l,rank})=>
+    (fCat==="all"||(fCat==="hardest"?rank<=10:l.status===fCat))&&
+    (fDiff==="all"||l.diff===fDiff)&&
+    (!q||l.name.toLowerCase().includes(q)||l.creator.toLowerCase().includes(q)));
+  $("#list").innerHTML=rows.length?rows.map(({l,rank})=>
+    `<div class="row" data-id="${l.id}">
+      <div class="rk">${rank}</div><div class="c2 nm"><b>${esc(l.name)}</b></div>
+      <div class="c3">${esc(l.creator)}</div><div class="c4">${badge(l.diff)}</div>
+      <div class="c5">${fmt(l.attempts)}</div><div class="c6">${stat(l.status)}</div>
+      ${admin?`<div class="rowtools"><button class="btn sm blue" data-edit="${l.id}">Edit</button><button class="btn sm red" data-del="${l.id}">Delete</button></div>`:""}
+    </div>`).join(""):`<div class="empty">NO LEVELS FOUND<br><br>Try another search or filter.</div>`;
+  $("#adminbar").classList.toggle("hide",!admin);
+  $("#adminBtn").textContent=admin?"\u{1F511} Admin panel":"\u{1F511} Admin";
+}
+
+/* ---------- modals ---------- */
+const open=id=>$(id).classList.add("open"),close=id=>$(id).classList.remove("open");
+document.querySelectorAll(".modal").forEach(m=>m.addEventListener("mousedown",e=>{if(e.target===m)m.classList.remove("open");}));
+document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".modal.open").forEach(m=>m.classList.remove("open"));});
+
+function showDetail(id){
+  const i=state.levels.findIndex(l=>l.id===id);if(i<0)return;const l=state.levels[i];
+  $("#detailBox").innerHTML=`<h2>#${i+1} &mdash; ${esc(l.name)}</h2>
+    <div class="kv"><b>Creator</b><span>${esc(l.creator)}</span></div>
+    <div class="kv"><b>Difficulty</b><span>${badge(l.diff)}</span></div>
+    <div class="kv"><b>Attempts</b><span>${fmt(l.attempts)}</span></div>
+    <div class="kv"><b>Status</b><span>${stat(l.status)}</span></div>
+    <div class="kv"><b>Rank</b><span>${i+1} of ${state.levels.length}</span></div>
+    ${l.video?`<div class="kv"><b>Video</b><span><a href="${esc(l.video)}" target="_blank" rel="noopener noreferrer">Watch</a></span></div>`:""}
+    <div class="kv"><b>Notes</b><span>${esc(l.desc||"No description yet.")}</span></div>
+    <div class="actions">${admin?`<button class="btn sm blue" data-edit="${l.id}">Edit</button>`:""}<button class="btn sm" data-close="#mDetail">Close</button></div>`;
+  open("#mDetail");
+}
+
+function levelForm(id){
+  if(!admin)return;
+  const idx=state.levels.findIndex(l=>l.id===id);
+  const l=idx>=0?state.levels[idx]:{name:"",creator:"",diff:state.diffs[0]?state.diffs[0].name:"",attempts:"",status:"pending",desc:"",video:""};
+  const pos=idx>=0?idx+1:state.levels.length+1;
+  $("#formBox").innerHTML=`<h2>${idx>=0?"EDIT LEVEL":"ADD LEVEL"}</h2>
+    <label class="lbl">Level name</label><input type="text" id="fName" maxlength="60" value="${esc(l.name)}">
+    <label class="lbl">Creator</label><input type="text" id="fCreator" maxlength="40" value="${esc(l.creator)}">
+    <label class="lbl">Difficulty</label><select id="fDiff">${state.diffs.map(d=>`<option ${d.name===l.diff?"selected":""}>${esc(d.name)}</option>`).join("")}</select>
+    <label class="lbl">Ranking position (1 = hardest)</label><input type="number" id="fPos" min="1" max="${state.levels.length+(idx>=0?0:1)}" value="${pos}">
+    <label class="lbl">Attempts / records (optional)</label><input type="number" id="fAtt" min="0" value="${esc(l.attempts)}">
+    <label class="lbl">Status</label><select id="fStatus"><option value="verified" ${l.status==="verified"?"selected":""}>Verified</option><option value="pending" ${l.status!=="verified"?"selected":""}>Pending</option></select>
+    <label class="lbl">Video link (optional)</label><input type="url" id="fVideo" placeholder="https://..." value="${esc(l.video||"")}">
+    <label class="lbl">Notes</label><textarea id="fDesc" maxlength="500">${esc(l.desc||"")}</textarea>
+    <div class="actions"><button class="btn green" id="fSave">Save</button><button class="btn" data-close="#mForm">Cancel</button></div>`;
+  open("#mForm");close("#mDetail");
+  $("#fSave").onclick=()=>{
+    const name=$("#fName").value.trim(),creator=$("#fCreator").value.trim();
+    if(!name||!creator){toast("Name and creator required");return;}
+    let video=$("#fVideo").value.trim();
+    if(video&&!/^https?:\/\//i.test(video)){toast("Video link must start with http(s)://");return;}
+    const obj={id:idx>=0?l.id:uid(),name,creator,diff:$("#fDiff").value,
+      attempts:$("#fAtt").value===""?"":Number($("#fAtt").value),status:$("#fStatus").value,desc:$("#fDesc").value.trim(),video};
+    if(idx>=0)state.levels.splice(idx,1);
+    let p=parseInt($("#fPos").value,10);if(isNaN(p))p=state.levels.length+1;
+    p=Math.max(1,Math.min(state.levels.length+1,p));
+    state.levels.splice(p-1,0,obj);
+    save();render();close("#mForm");toast("Level saved!");
+  };
+}
+
+function diffForm(){
+  if(!admin)return;
+  const draw=()=>{
+    $("#formBox").innerHTML=`<h2>EDIT DIFFICULTIES</h2>
+      <p style="font-size:9px">Rename, recolor, add or remove. Renaming updates all levels using it. A difficulty in use cannot be deleted.</p>
+      <div id="dl">${state.diffs.map((d,i)=>`<div class="diffrow" data-i="${i}">
+        <input type="color" value="${esc(d.color)}" data-c="${i}"><input type="text" value="${esc(d.name)}" maxlength="24" data-n="${i}">
+        <button class="btn sm red" data-rm="${i}">X</button></div>`).join("")}</div>
+      <div class="actions"><button class="btn sm yellow" id="dAdd">+ Add</button><button class="btn green" id="dSave">Save</button><button class="btn" data-close="#mForm">Cancel</button></div>`;
+    $("#dAdd").onclick=()=>{collect();state.diffs.push({name:"New difficulty",color:"#049cd8"});draw();};
+    $("#dSave").onclick=()=>{
+      collect();
+      const names=state.diffs.map(d=>d.name.trim());
+      if(names.some(n=>!n)||new Set(names.map(n=>n.toLowerCase())).size!==names.length){toast("Names must be unique and not empty");return;}
+      state.diffs.forEach(d=>d.name=d.name.trim());
+      state.levels.forEach(l=>{if(!state.diffs.find(d=>d.name===l.diff))l.diff=renameMap[l.diff]||state.diffs[0].name;});
+      save();render();close("#mForm");toast("Difficulties updated");
+    };
+    document.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{
+      collect();const i=+b.dataset.rm,d=state.diffs[i];
+      if(state.levels.some(l=>l.diff===orig[i]||l.diff===d.name)){toast("Difficulty is in use");return;}
+      state.diffs.splice(i,1);orig.splice(i,1);draw();});
+  };
+  let orig=state.diffs.map(d=>d.name),renameMap={};
+  const collect=()=>{
+    document.querySelectorAll("[data-n]").forEach(inp=>{const i=+inp.dataset.n;
+      if(orig[i]!==undefined&&orig[i]!==inp.value)renameMap[orig[i]]=inp.value.trim();
+      state.diffs[i].name=inp.value;});
+    document.querySelectorAll("[data-c]").forEach(inp=>state.diffs[+inp.dataset.c].color=inp.value);
+  };
+  // keep orig aligned if difficulties are added
+  const origPush=Array.prototype.push;
+  draw();open("#mForm");
+  // after new items, orig lacks entries -> fine (undefined)
+}
+
+/* ---------- auth (client-side) ---------- */
+async function hash(s){
+  try{if(window.crypto&&crypto.subtle){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("lod:"+s));
+    return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,"0")).join("");}}catch(e){}
+  let h=5381;s="lod:"+s;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))>>>0;return "f"+h.toString(16);
+}
+const DEF_SHA="e4122daa6711bbe43716246a4da267ff75e624f8289eedad8084bb16c714cd26",DEF_FB="f31e5843f";
+async function getPass(){let p=null;try{p=localStorage.getItem(PKEY);}catch(e){}
+  if(!p){p=(window.crypto&&crypto.subtle)?DEF_SHA:DEF_FB;}return p;}
+function loginForm(){
+  $("#formBox").innerHTML=`<h2>&#128273; ADMIN LOGIN</h2>
+    <label class="lbl">Password</label><input type="password" id="lpw" autocomplete="current-password">
+    <div class="actions"><button class="btn green" id="lgo">Enter</button><button class="btn" data-close="#mForm">Cancel</button></div>`;
+  open("#mForm");setTimeout(()=>$("#lpw").focus(),50);
+  const go=async()=>{
+    if(await hash($("#lpw").value)===await getPass()){admin=true;try{sessionStorage.setItem(SKEY,"1");}catch(e){}
+      close("#mForm");render();toast("Admin mode ON");}
+    else{toast("Wrong password");$("#lpw").value="";}
+  };
+  $("#lgo").onclick=go;$("#lpw").onkeydown=e=>{if(e.key==="Enter")go();};
+}
+function passForm(){
+  $("#formBox").innerHTML=`<h2>CHANGE PASSWORD</h2>
+    <label class="lbl">Current password</label><input type="password" id="p0">
+    <label class="lbl">New password (min. 6 chars)</label><input type="password" id="p1">
+    <div class="actions"><button class="btn green" id="pok">Save</button><button class="btn" data-close="#mForm">Cancel</button></div>`;
+  open("#mForm");
+  $("#pok").onclick=async()=>{
+    if(await hash($("#p0").value)!==await getPass()){toast("Current password wrong");return;}
+    if($("#p1").value.length<6){toast("Too short");return;}
+    try{localStorage.setItem(PKEY,await hash($("#p1").value));}catch(e){}
+    close("#mForm");toast("Password changed");
+  };
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click",e=>{
+  const t=e.target.closest("button,.card,.row");if(!t)return;
+  if(t.dataset.close){close(t.dataset.close);return;}
+  if(t.dataset.edit){e.stopPropagation();levelForm(t.dataset.edit);return;}
+  if(t.dataset.del){e.stopPropagation();if(!admin)return;
+    const l=state.levels.find(x=>x.id===t.dataset.del);
+    if(l&&confirm('Delete "'+l.name+'"?')){state.levels=state.levels.filter(x=>x.id!==l.id);save();render();toast("Level deleted");}return;}
+  if(t.dataset.cat){fCat=t.dataset.cat;render();return;}
+  if(t.dataset.diff){fDiff=t.dataset.diff;render();return;}
+  if(t.classList.contains("card")||t.classList.contains("row"))showDetail(t.dataset.id);
+});
+$("#q").addEventListener("input",e=>{query=e.target.value;render();});
+$("#adminBtn").onclick=()=>{admin?window.scrollTo({top:$("#adminbar").offsetTop-10,behavior:"smooth"}):loginForm();};
+$("#aAdd").onclick=()=>levelForm(null);
+$("#aDiff").onclick=diffForm;
+$("#aPass").onclick=passForm;
+$("#aOut").onclick=()=>{admin=false;try{sessionStorage.removeItem(SKEY);}catch(e){}render();toast("Logged out");};
+$("#aReset").onclick=()=>{if(admin&&confirm("Reset ALL data to the sample list?")){
+  state={diffs:JSON.parse(JSON.stringify(DEF_DIFFS)),levels:DEF_LEVELS.map(l=>({id:uid(),...l}))};save();render();toast("Reset done");}};
+$("#aExp").onclick=()=>{if(!admin)return;
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(state,null,2)],{type:"application/json"}));
+  a.download="smmwe-difficulties.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);};
+$("#aImp").onclick=()=>{if(admin)$("#file").click();};
+$("#file").onchange=e=>{
+  const f=e.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=()=>{try{const d=JSON.parse(r.result);
+    if(!Array.isArray(d.levels)||!Array.isArray(d.diffs))throw 0;
+    d.levels.forEach(l=>{l.id=l.id||uid();});state={diffs:d.diffs,levels:d.levels};save();render();toast("Import OK");}
+    catch(_){toast("Invalid file");}};
+  r.readAsText(f);e.target.value="";
+};
+render();
+})();
+</script>
+</body>
+</html>
